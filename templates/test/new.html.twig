@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Test{% endblock %}
+
+{% block body %}
+
+<div class="card">
+    <div class="card-header">
+        <strong>new Test</strong>
+    </div>
+    <div class="card-footer">
+    {{ include('test/_form.html.twig') }}
+
+    </div>
+    <a class="btn btn-secondary" href="{{ path('test_index') }}">Back</a>
+</div>
+{% endblock %}

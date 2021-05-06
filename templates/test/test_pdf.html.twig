@@ -1,0 +1,29 @@
+    <h1>Test index</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idtest</th>
+                <th>Nom</th>
+                <th>Cat</th>
+                <th>Contenu</th>
+                <th>Datetest</th>
+                <th>Noenseig</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for test in tests %}
+            <tr>
+                <td>{{ test.idtest }}</td>
+                <td>{{ test.nom }}</td>
+                <td>{{ test.cat }}</td>
+                <td>{{ test.contenu }}</td>
+                <td>{{ test.datetest ? test.datetest|date('Y-m-d') : '' }}</td>
+                <td>{{ test.noenseig }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>

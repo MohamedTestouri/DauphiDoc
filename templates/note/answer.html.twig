@@ -1,0 +1,44 @@
+{% extends 'front_base.html.twig' %}
+
+{% block title %}New Note{% endblock %}
+
+{% block body %}
+
+    <!-- ***** Contact Us Start ***** -->
+    <section class="section colored" id="contact-us">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        <h2 class="section-title">Subject: {{  test.nom }}</h2>
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        <p>The question is : {{  test.contenu }}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Section Title End ***** -->
+
+            <div class="row">
+                <!-- ***** Contact Form Start ***** -->
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <div class="contact-form">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        {{ include('note/_form.html.twig') }}
+                                    </fieldset>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <!-- ***** Contact Form End ***** -->
+            </div>
+        </div>
+    </section>
+    <!-- ***** Contact Us End ***** -->
+{% endblock %}
+

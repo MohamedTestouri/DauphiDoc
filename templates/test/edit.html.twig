@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Test{% endblock %}
+
+{% block body %}
+
+
+
+
+    <div class="card">
+        <div class="card-header">
+            <strong>Edit Test</strong>
+        </div>
+        <div class="card-footer">
+
+            {{ include('test/_form.html.twig', {'button_label': 'Update'}) }}
+
+        </div>
+    <a class="btn btn-secondary" href="{{ path('test_index') }}">Back</a>
+    </div>
+{% endblock %}

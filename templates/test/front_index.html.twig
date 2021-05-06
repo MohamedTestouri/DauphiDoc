@@ -1,0 +1,57 @@
+{% extends 'front_base.html.twig' %}
+{% block title %}Test index{% endblock %}
+
+{% block body %}
+<!-- ***** Testimonials Start ***** -->
+<section class="section" id="testimonials">
+    <div class="container">
+        <!-- ***** Section Title Start ***** -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="center-heading">
+                    <h2 class="section-title">Looking for a test ?</h2>
+                </div>
+            </div>
+            <div class="offset-lg-3 col-lg-6">
+                <div class="center-text">
+                    <p>Donec tempus, sem non rutrum imperdiet, lectus orci fringilla nulla, at accumsan elit eros a turpis. Ut sagittis lectus libero.</p>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Section Title End ***** -->
+
+        <div class="row">
+            {% for test in tests %}
+            <!-- ***** Testimonials Item Start ***** -->
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="team-item">
+                    <div class="team-content">
+                        <div class="team-center">
+                        <i><img src="{{ asset('frontoffice/images/testimonial-icon.png')}}" alt=""></i>
+                        <h5 class="features-title">{{ test.nom }}</h5>
+                        <p>{{ test.contenu }}</p>
+                        </div>
+                        <div class="user-image">
+                            <img src="http://placehold.it/60x60" alt="">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="user-name">{{ test.noenseig }}</h3>
+                            <span>{{ test.cat }}</span>
+                            <span>{{ test.datetest ? test.datetest|date('Y-m-d') : '' }}</span>
+                        </div>
+                    </div>
+                   <br/>
+                        <div class="team-center">
+                            <a href="{{ path('note_answer', {'id': test.idtest}) }}" class="main-button">Take the Test</a>
+                        </div>
+                </div>
+            </div>
+            <!-- ***** Testimonials Item End ***** -->
+            {% endfor %}
+                   </div>
+    </div>
+</section>
+<!-- ***** Testimonials End ***** -->
+
+
+{% endblock %}

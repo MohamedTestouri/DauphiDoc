@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Note{% endblock %}
+
+{% block body %}
+<div class="top-campaign">
+    <div class="table-data__tool">
+        <div class="table-data__tool-left">
+            <h1>Note</h1>
+
+        </div>
+
+        <div class="table-data__tool-right">
+            <a class="btn btn-secondary" href="{{ path('note_index') }}">Back</a>
+        </div>
+    </div>
+<div class="table-responsive">
+    <table class="table table-top-campaign">
+        <tbody>
+            <tr>
+                <th>Idnote</th>
+                <td>{{ note.idnote }}</td>
+            </tr>
+            <tr>
+                <th>Nomtest</th>
+                <td>{{ note.nomtest }}</td>
+            </tr>
+            <tr>
+                <th>Nomeleve</th>
+                <td>{{ note.nomeleve }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ note.note }}</td>
+            </tr>
+            <tr>
+                <th>Resultat</th>
+                <td>{{ note.resultat }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <div class="table-data__tool">
+        <div class="table-data__tool-left">
+            <a class="btn btn-warning" href="{{ path('note_edit', {'idnote': note.idnote}) }}">edit</a>
+        </div>
+
+        <div class="table-data__tool-right">
+{{ include('note/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test{% endblock %}
+
+{% block body %}
+
+
+<div class="top-campaign">
+    <div class="table-data__tool">
+        <div class="table-data__tool-left">
+            <h1>Test</h1>
+
+        </div>
+
+        <div class="table-data__tool-right">
+            <a class="btn btn-secondary" href="{{ path('test_index') }}">Back</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+    <table class="table table-top-campaign">
+        <tbody>
+            <tr>
+                <th>Idtest</th>
+                <td>{{ test.idtest }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ test.nom }}</td>
+            </tr>
+            <tr>
+                <th>Cat</th>
+                <td>{{ test.cat }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ test.contenu }}</td>
+            </tr>
+            <tr>
+                <th>Datetest</th>
+                <td>{{ test.datetest ? test.datetest|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Noenseig</th>
+                <td>{{ test.noenseig }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <div class="table-data__tool">
+        <div class="table-data__tool-left">
+
+
+    <a class="btn btn-warning" href="{{ path('test_edit', {'idtest': test.idtest}) }}">edit</a>
+        </div>
+
+        <div class="table-data__tool-right">
+
+    {{ include('test/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

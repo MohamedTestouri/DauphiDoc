@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Note index{% endblock %}
+
+{% block body %}
+<div class="col-md-12">
+    <h3 class="title-5 m-b-35">Note index</h3>
+    <div class="table-responsive table-responsive-data2">
+        <div class="table-data__tool">
+            <div class="table-data__tool-left">
+                <a class="btn btn-primary" href="{{ path('note_note') }}">Order by Note</a>
+                <a class="btn btn-primary" href="{{ path('note_name') }}">Order by Name Student</a>
+            </div>
+
+            <div class="table-data__tool-right">
+                <a class="btn btn-secondary" href="{{ path('note_pdf') }}">Print PDF</a>
+            </div>
+        </div>
+    <table class="table table-data2" id="myTable">
+        <thead>
+            <tr>
+                <th>Idnote</th>
+                <th>Nomtest</th>
+                <th>Nomeleve</th>
+                <th>Note</th>
+                <th>Resultat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for note in notes %}
+            <tr>
+                <td>{{ note.idnote }}</td>
+                <td>{{ note.nomtest }}</td>
+                <td>{{ note.nomeleve }}</td>
+                <td>{{ note.note }}</td>
+                <td>{{ note.resultat }}</td>
+                <td>
+                    <div class="table-data-feature">
+                        <a class="item" data-toggle="tooltip" data-placement="top" title="Edit" href="{{ path('note_edit', {'idnote': note.idnote}) }}"><i class="zmdi zmdi-edit"></i></a>
+                        <a class="item" data-toggle="tooltip" data-placement="top" title="Show" href="{{ path('note_show', {'idnote': note.idnote}) }}"><i class="zmdi zmdi-more"></i></a>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        {{ knp_pagination_render(notes) }}
+    </div>
+    </div>
+</div>
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">Notes Pie Chart</h3>
+                <canvas id="doughutChart"></canvas>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script> try {
+            //doughut chart
+            var ctx = document.getElementById("doughutChart");
+            if (ctx) {
+                ctx.height = 175;
+                var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        datasets: [{
+                            data: [{% for count in admis %}
+                                {{count.ids}},
+                                {% endfor %}
+                                {% for count in fails %}
+                                {{count.ids}},
+                                {% endfor %}
+                                ],
+                            backgroundColor: [
+                                "rgb(60, 179, 113,0.9)",
+                                "rgb(255, 80, 82,0.9)"
+                            ],
+                            hoverBackgroundColor: [
+                                "rgb(60, 179, 113,1)",
+                                "rgb(255, 80, 82,1)"
+                            ]
+                        }],
+                        labels: [
+                            "Passed","Failed"
+                        ]
+                    },
+                    options: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                fontFamily: 'Poppins'
+                            }
+                        },
+                        responsive: true
+                    }
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    </script>
+{% endblock %}
