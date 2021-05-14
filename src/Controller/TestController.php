@@ -6,18 +6,32 @@ use App\Entity\Test;
 use App\Form\TestType;
 use App\Repository\TestRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * @Route("/test")
  */
 class TestController extends AbstractController
 {
+    /**
+     * @Route("/api/show", name="test_api_show")
+     */
+    public function showAll(){
+        $test = $this->getDoctrine()->getRepository(Test::class)->findAll();
+        $serializer = new Serializer([new DateTimeNormalizer(), new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($test);
+        return new JsonResponse($formatted);
+    }
     /**
      * @Route("/", name="test_index", methods={"GET"})
      */

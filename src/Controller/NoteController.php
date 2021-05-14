@@ -12,15 +12,38 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * @Route("/note")
  */
 class NoteController extends AbstractController
 {
+    /**
+     * @Route("/api/answer", name="api_note_answer")
+     */
+    public function answerApi(Request $request){
+        $entityManager = $this->getDoctrine()->getManager();
+        $test = $this->getDoctrine()
+            ->getRepository(Test::class)
+            ->find($request->get('idTest'));
+        $notes = new Note();
+        $notes->setNote(1);
+        $notes->setNomtest($test->getNom());
+        $notes->setNomeleve($request->get('studentName'));
+        $notes->setResultat($request->get('result'));
+        $entityManager->persist($notes);
+        $entityManager->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($notes);
+        return new JsonResponse($formatted);
+
+    }
     /**
      * @Route("/{id}/answer", name="note_answer", methods={"GET","POST"})
      */
