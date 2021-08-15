@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
-    <meta name="keywords" content="au theme template">
-
-    <!-- Title Page-->
-    <title>Dashboard</title>
-
+{% extends 'front_base.html.twig' %}
+{% block styles %}
     <!-- Fontfaces CSS-->
     <link href="{{ asset('backoffice/css/font-face.css" rel="stylesheet') }}" media="all">
     <link href="{{ asset('backoffice/vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
@@ -33,84 +21,51 @@
     <!-- Main CSS-->
     <link href="{{ asset('backoffice/css/theme.css') }}" rel="stylesheet" media="all">
 
-</head>
-
-<body class="animsition">
-<div class="page-wrapper">
-
-
-    <!-- MENU SIDEBAR-->
-    <aside class="menu-sidebar d-none d-lg-block">
-        <div class="logo">
-            <a href="#">
-                <img src="{{ asset('backoffice/images/icon/logo.png')}}" alt="Cool Admin" />
-            </a>
-        </div>
-        <div class="menu-sidebar__content js-scrollbar1">
-            <nav class="navbar-sidebar">
-                <ul class="list-unstyled navbar__list">
-                    <li class="active">
-                        <a href="{{ path('restaurant_index') }}">
-                            <i class="fas fa-map-marker-alt"></i>Restaurants</a>
-                    </li>
-                    <li >
-                        <a href="{{ path('reservation_index') }}">
-                            <i class="fas fa-map-marker-alt"></i>Reservations</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </aside>
-    <!-- END MENU SIDEBAR-->
-
-    <!-- PAGE CONTAINER-->
-    <div class="page-container">
-        <!-- HEADER DESKTOP-->
-        <header class="header-desktop">
-            <div class="section__content section__content--p30">
-                <div class="container-fluid">
-                    <div class="header-wrap">
-                        <form class="form-header" action="" method="POST">
-                            <input id="myInput" onkeyup="myFunction()" class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
-                            <button class="au-btn--submit" type="submit">
-                                <i class="zmdi zmdi-search"></i>
-                            </button>
-                        </form>
-                        <div class="header-button">
-                            <div class="account-wrap">
-                                <div class="account-item clearfix js-item-menu">
-                                    <div class="image">
-                                        <img src="{{ asset('backoffice/images/icon/avatar-01.jpg')}}" alt="John Doe" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- HEADER DESKTOP-->
-
-        <!-- MAIN CONTENT-->
-        <div class="main-content">
-            <div class="section__content section__content--p30">
-                <div class="container-fluid">
-                    <div class="row">
-{% block body %}
 {% endblock %}
+{% block title %}Restaurants{% endblock %}
 
-                    </div>
-                    <br/>
-                    <br/>
-                </div>
+{% block body %}
+    <div class="col-md-12">
+        <h3 class="title-5 m-b-35">Restaurant table</h3>
+
+
+
             </div>
-        </div>
-        <!-- END MAIN CONTENT-->
-        <!-- END PAGE CONTAINER-->
-    </div>
+            <table class="table table-data2" id="myTable">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Specialite</th>
+                    <th>Places</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for restaurant in restaurants %}
+                    <tr>
+                        <td>{{ restaurant.id }}</td>
+                        <td>{{ restaurant.nom }}</td>
+                        <td>{{ restaurant.specialite }}</td>
+                        <td>{{ restaurant.places }}</td>
+                        <td>
+                            <a class="item" data-toggle="tooltip" data-placement="top" title="Reserver" href="{{ path('reservation_new', {'id': restaurant.id}) }}">Reserver</a>
+                             </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-</div>
+            <div>
+                {{ knp_pagination_render(restaurants) }}
+            </div>
 
+{% endblock %}
+{% block scripts %}
 <!-- Jquery JS-->
 <script src="{{ asset('backoffice/vendor/jquery-3.2.1.min.js')}}"></script>
 <!-- Bootstrap JS-->
@@ -156,9 +111,4 @@
         }
     }
 </script>
-{% block scripts %}
 {% endblock %}
-</body>
-
-</html>
-<!-- end document-->

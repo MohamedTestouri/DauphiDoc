@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restaurants{% endblock %}
+
+{% block body %}
+<div class="col-md-12">
+    <h3 class="title-5 m-b-35">Restaurant table</h3>
+    <div class="table-responsive table-responsive-data2">
+        <div class="table-data__tool">
+            <div class="table-data__tool-left">
+                <a class="btn btn-primary" href="{{ path('restaurant_places') }}">Order by Places</a>
+                <a class="btn btn-primary" href="{{ path('restaurant_specialite') }}">Order by Specialite</a>
+                <a class="btn btn-primary" href="{{ path('restaurant_name') }}">Order by Name</a>
+            </div>
+
+            <div class="table-data__tool-right">
+                <a class="btn btn-success" href="{{ path('restaurant_new') }}"><i class="zmdi zmdi-plus"></i> Create new</a>
+                <a class="btn btn-secondary" href="{{ path('restaurant_pdf') }}">Print PDF</a>
+            </div>
+        </div>
+    <table class="table table-data2" id="myTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Specialite</th>
+                <th>Places</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for restaurant in restaurants %}
+            <tr>
+                <td>{{ restaurant.id }}</td>
+                <td>{{ restaurant.nom }}</td>
+                <td>{{ restaurant.specialite }}</td>
+                <td>{{ restaurant.places }}</td>
+                <td>
+                    <a class="item" data-toggle="tooltip" data-placement="top" title="Show" href="{{ path('restaurant_show', {'id': restaurant.id}) }}"><i class="zmdi zmdi-more"></i></a>
+                    <a class="item" data-toggle="tooltip" data-placement="top" title="Edit" href="{{ path('restaurant_edit', {'id': restaurant.id}) }}"><i class="zmdi zmdi-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div>
+        {{ knp_pagination_render(restaurants) }}
+    </div>
+    </div>
+</div>
+
+{% endblock %}

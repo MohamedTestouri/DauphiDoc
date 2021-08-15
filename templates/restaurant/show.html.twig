@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restaurant{% endblock %}
+
+{% block body %}
+
+<div class="top-campaign">
+    <div class="table-data__tool">
+        <div class="table-data__tool-left">
+            <h1>Restaurant</h1>
+
+        </div>
+<div><p>.               ..</p></div>
+        <div class="table-data__tool-left">
+            <a class="btn btn-secondary" href="{{ path('restaurant_index') }}">Back</a>
+        </div>
+    </div>
+<div class="table-responsive">
+    <table class="table table-top-campaign">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ restaurant.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ restaurant.nom }}</td>
+            </tr>
+            <tr>
+                <th>Specialite</th>
+                <td>{{ restaurant.specialite }}</td>
+            </tr>
+            <tr>
+                <th>Places</th>
+                <td>{{ restaurant.places }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <div class="table-data__tool">
+        <div class="table-data__tool-left">
+
+
+            <a class="btn btn-warning" href="{{ path('restaurant_edit', {'id': restaurant.id}) }}">edit</a>
+        </div>
+
+        <div class="table-data__tool-right">
+
+            {{ include('restaurant/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

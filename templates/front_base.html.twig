@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+{% block styles %}{% endblock %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -51,7 +51,7 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="#welcome" class="active">Home</a></li>
-                        <li><a href="#testimonials">Tests</a></li>
+                        <li><a href="#testimonials">Restaurant</a></li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -71,24 +71,21 @@
     <div class="header-text">
         <div class="container">
             <div class="row">
-                <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12">
-                    <h1>We provide the best <strong>strategy</strong><br>to grow up your <strong>business</strong></h1>
-                    <p>Softy Pinko is a professional Bootstrap 4.0 theme designed by Template Mo
-                        for your company at absolutely free of charge</p>
-                    <a href="{{ path('test_index_front') }}" class="main-button-slider">Discover More</a>
-                </div>
+
             </div>
         </div>
     </div>
     <!-- ***** Header Text End ***** -->
 </div>
 <!-- ***** Welcome Area End ***** -->
-
+<br/>
+<br/>
 
 {% block body %}
 {% endblock %}
 
-
+<br/>
+<br/>
 <!-- ***** Footer Start ***** -->
 <footer>
     <div class="container">

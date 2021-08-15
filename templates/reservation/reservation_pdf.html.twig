@@ -1,0 +1,25 @@
+<table class="table table-data2" id="myTable">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Iduser</th>
+        <th>Idrestaurant</th>
+        <th>Places</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for reservation in reservations %}
+        <tr>
+            <td>{{ reservation.id }}</td>
+            <td>{{ reservation.iduser }}</td>
+            <td>{{ reservation.idrestaurant }}</td>
+            <td>{{ reservation.places }}</td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="5">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

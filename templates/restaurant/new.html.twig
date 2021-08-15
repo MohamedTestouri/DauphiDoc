@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Restaurant{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header">
+        <strong>new Restaurant</strong>
+    </div>
+    <div class="card-footer">
+    {{ include('restaurant/_form.html.twig') }}
+    </div>
+    <a class="btn btn-secondary" href="{{ path('restaurant_index') }}">back to list</a>
+</div>
+{% endblock %}
