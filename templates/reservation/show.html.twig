@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block body %}<div class="top-campaign">
+    <div class="table-data__tool">
+        <div class="table-data__tool-left">
+            <h1>Reservation</h1>
+
+        </div>
+        <div><p>.               ..</p></div>
+        <div class="table-data__tool-left">
+            <a class="btn btn-secondary" href="{{ path('reservation_index') }}">Back</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-top-campaign">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation.id }}</td>
+            </tr>
+            <tr>
+                <th>Iduser</th>
+                <td>{{ reservation.iduser }}</td>
+            </tr>
+            <tr>
+                <th>Idrestaurant</th>
+                <td>{{ reservation.idrestaurant }}</td>
+            </tr>
+            <tr>
+                <th>Places</th>
+                <td>{{ reservation.places }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <div class="table-data__tool-right">
+
+    {{ include('reservation/_delete_form.html.twig') }}
+    </div>
+    </div>
+    </div>
+{% endblock %}

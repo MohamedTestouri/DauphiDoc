@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation index{% endblock %}
+
+{% block body %}
+<div class="col-md-12">
+    <h3 class="title-5 m-b-35">Reservation table</h3>
+    <div class="table-responsive table-responsive-data2">
+        <div class="table-data__tool">
+            <div class="table-data__tool-left">
+                <a class="btn btn-primary" href="{{ path('reservation_places') }}">Order by Places</a>
+            </div>
+
+            <div class="table-data__tool-right">
+                <a class="btn btn-secondary" href="{{ path('reservation_pdf') }}">Print PDF</a>
+            </div>
+        </div>
+    <table class="table table-data2" id="myTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Iduser</th>
+                <th>Idrestaurant</th>
+                <th>Places</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.iduser }}</td>
+                <td>{{ reservation.idrestaurant }}</td>
+                <td>{{ reservation.places }}</td>
+                <td>
+                    <a class="item" data-toggle="tooltip" data-placement="top" title="Show" href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <div>
+            {{ knp_pagination_render(reservations) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
